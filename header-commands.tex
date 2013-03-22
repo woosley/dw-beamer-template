@@ -1,0 +1,116 @@
+\usetikzlibrary{decorations.fractals}
+\useoutertheme[subsection=false,shadow]{miniframes}
+%% the outstanding inner theme, used for block, item etc.
+\useinnertheme[shadow=true]{rounded}
+
+\usepackage{xifthen}% provides \isempty test
+
+%% use those colors for blocks
+\setbeamercolor{item projected}{bg=DeepSkyBlue4,fg=white}
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!50!DeepSkyBlue3}
+%%\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+%%\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+%%\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+%%\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamercolor*{lower separation line head}{bg=DeepSkyBlue4} 
+\setbeamercolor*{normal text}{fg=black,bg=white} 
+\setbeamercolor*{alerted text}{fg=red} 
+\setbeamercolor*{example text}{fg=black} 
+\setbeamercolor*{frametitle}{fg=DeepSkyBlue3} 
+\setbeamercolor*{structure}{fg=black} 
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+
+% ======================================
+% custom commands 
+
+\def\maketitle{{
+%% override outtemplate in title page
+    \setbeamertemplate{footline}{}
+    \setbeamertemplate{navigation symbols}{}
+    \usebackgroundtemplate{}
+    \setbeamertemplate{headline}{% 
+	    \setbeamercolor{head1}{bg=\headbarcolor}
+	    \hbox{%
+            \begin{beamercolorbox}[wd=.01\paperwidth,ht=2.25ex,dp=50ex,center]{head1}%
+            \fontsize{5}{5}\selectfont
+        \end{beamercolorbox}%
+        }\vspace{-50ex}
+    }
+    \frame{\titlepage}
+}}
+\newcommand{\cemph}[1]{\textcolor{\highlightcolor}{#1}}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}{
+    {\textsc \insertframetitle}\vspace{0.2cm}\par
+}
+
+%% redefine title page
+\setbeamertemplate{title page}{
+    \title{\slidesettitle}
+    %%\subtitle{SUBTITLE}
+    \author{\footnotesize \textbf{\authorname}\\ \authoremail \\ 
+        \vspace{12pt} {\scriptsize \authorposition}\\\vspace{6pt}
+        {\tiny \textcolor{gray}{\insertdate}}
+    }
+    \date{ {\scriptsize \today} }
+    \begin{flushright}\includegraphics[width=0.15\textwidth]{\logoimagepath}\hspace*{2ex}
+    \end{flushright}
+    \begin{flushleft}
+        \vspace{-1.5cm}{\small \textcolor{\highlightcolor}{\headtitle}}\\\vspace{2cm}
+        {\huge \slidesettitle \ifthenelse{\equal{\slidesetsubtitle}{}}%
+        {}% if #1 is empty
+        {: \\ {\large \slidesetsubtitle}}% if #1 is not empty
+        } \\    
+        \vspace{20pt}
+        \insertauthor 
+    \end{flushleft}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{footline}{
+    \begin{tiny}
+    \setbeamercolor{foot1}{fg=black!70,bg=blue!30}
+    \setbeamercolor{foot2}{fg=black!70,bg=blue!40}
+    \setbeamercolor{foot3}{fg=black,bg=blue!50}
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{foot1}%
+            \fontsize{5}{5}\selectfont \slidesettitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{foot2}%
+            \fontsize{5}{5}\selectfont \insertsection
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,right]{foot3}%
+            \insertframenumber{} / \inserttotalframenumber \hspace*{2ex} 
+        \end{beamercolorbox}}%
+    \vskip0pt%
+    \end{tiny}
+}
+
+
+
+\usebackgroundtemplate{
+    \vbox to \paperheight {\vfil \hbox to \paperwidth{
+        \hfil 
+        \includegraphics[width=\paperwidth,height=\paperheight,
+        keepaspectratio]{\bgimagepath}\hfil
+    }\vfil}
+}
+
+\setbeamertemplate{headline}{% 
+	\setbeamercolor{head1}{bg=\headbarcolor}
+	 \hbox{%
+  \begin{beamercolorbox}[wd=.01\paperwidth,ht=2.25ex,dp=10ex,center]{head1}%
+  \fontsize{5}{5}\selectfont
+  
+  \end{beamercolorbox}%
+  }\vspace{-10ex}
+}
+
+% greater line spacing for new slides
+\linespread{1.2} 
